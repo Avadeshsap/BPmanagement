@@ -1,0 +1,82 @@
+<mvc:View
+    controllerName="bpmngmntnsp.workflowuimodule.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns="sap.m"
+>
+    <App id="app">
+     <Page id = "scroll">
+        <content>
+        <form:SimpleForm id="request-information-form" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+             <form:content>
+                <core:Title id="vacation-timerange-heading" text="A new order has been received. Please review and confirm whether the requirements can be met or not."/>
+                <Label id="OrganizationBPName1-name-label" text="Organization BPName1" labelFor="OrganizationBPName1-field"/>
+                <Input id="OrganizationBPName1-field" value="{context>/OrganizationBPName1}" editable="false"/> 
+                <Label id="SearchTerm1-label" text="Search Term1" labelFor="SearchTerm1-field"/>
+                <Input id="SearchTerm1-field" value="{context>/SearchTerm1}" editable="false"/> 
+                <Label id="firstname-name-label" text="First Name" labelFor="firstname-name-field"/>
+                <Input id="firstname-name-field" value="{context>/firstName}" editable="false"/> 
+                <Label id="lastName-name-label" text="Last Name" labelFor="lastName-name-field"/>
+                <Input id="lastName-name-field" value="{context>/lastName}" editable="false"/> 
+                <Label id="organization-label" text="Organization" labelFor="organization-field"/>
+                <Input id="organization-field" value="{context>/organization}" editable="false"/> 
+                <Label id="category-label" text="Category" labelFor="category-field"/>
+                <Input id="category-field" value="{context>/category}" editable="false"/> 
+                <Label id="streetName-label" text="Street Name" labelFor="streetName-field"/>
+                <Input id="streetName-field" value="{context>/StreetName}" editable="false"/>
+                <Label id="houseNumber-label" text="House Number" labelFor="houseNumber-field"/>
+                <Input id="houseNumber-field" value="{context>/HouseNumber}" editable="false"/> 
+                <Label id="District-label" text="District" labelFor="District-field"/>
+                <Input id="District-field" value="{context>/District}" editable="true"/> 
+                <Label id="postalCode-label" text="Postal Code" labelFor="postalCode-field"/>
+                <Input id="postalCode-field" value="{context>/PostalCode}" editable="false"/> 
+                <Label id="city-label" text="City" labelFor="city-field"/>
+                <Input id="city-field" value="{context>/CityName}" editable="false"/> 
+                <Label id="country-label" text="Country" labelFor="country-field"/>
+                <Input id="country-field" value="{context>/Country}" editable="false"/> 
+                <Label id="TransportZone-label" text="Transport Zone" labelFor="TransportZone-field"/>
+                <Input id="TransportZone-field" value="{context>/TransportZone}" editable="true"/> 
+                <Label id="Language-label" text="Language" labelFor="Language-field"/>
+                <Input id="Language-field" value="{context>/Language}" editable="true"/> 
+                <Label id="TradingPartner-label" text="Trading Partner" labelFor="TradingPartner-field"/>
+                <Input id="TradingPartner-field" value="{context>/TradingPartner}" editable="true"/> 
+                <Label id="ReconciliationAccount-label" text="Reconciliation Account" labelFor="ReconciliationAccount-field"/>
+                <Input id="ReconciliationAccount-field" value="{context>/ReconciliationAccount}" editable="true"/>
+                <Label id="CompanyCode-label" text="Company Code" labelFor="CompanyCode-field"/>
+                <Input id="CompanyCode-field" value="{context>/CompanyCode}" editable="true"/>  
+                <Label id="BusinessPartnerGrouping-label" text="Business Partner Grouping" labelFor="BusinessPartnerGrouping-field"/>
+                <Input id="BusinessPartnerGrouping-field" value="{context>/BusinessPartnerGrouping}" editable="true"/> 
+                <Label id="DistributionChannel-label" text="Distribution Channel" labelFor="DistributionChannel-field"/>
+                <Input id="DistributionChannel-field" value="{context>/DistributionChannel}" editable="true"/>  
+                <Label id="Division-label" text="Division" labelFor="Division-field"/>
+                <Input id="Division-field" value="{context>/Division}" editable="true"/>  
+                <Label id="SalesOrganization-label" text="Sales Organization" labelFor="SalesOrganization-field"/>
+                <Input id="SalesOrganization-field" value="{context>/SalesOrganization}" editable="true"/>  
+                <Label id="SalesDistrict-label" text="Sales District" labelFor="SalesDistrict-field"/>
+                <Input id="SalesDistrict-field" value="{context>/SalesDistrict}" editable="true"/>  
+                <Label id="Currency-label" text="Currency" labelFor="Currency-field"/>
+                <Input id="Currency-field" value="{context>/Currency}" editable="true"/>  
+                <Label id="CustomerPriceGroup-label" text="Customer Price Group" labelFor="CustomerPriceGroup-field"/>
+                <Input id="CustomerPriceGroup-field" value="{context>/CustomerPriceGroup}" editable="true"/>  
+                <Label id="CustomerPricingProcedure-label" text="Customer Pricing Procedure" labelFor="CustomerPricingProcedure-field"/>
+                <Input id="CustomerPricingProcedure-field" value="{context>/CustomerPricingProcedure}" editable="true"/>  
+            </form:content>
+        </form:SimpleForm>
+
+        <html:hr></html:hr>
+        <FlexBox id="comment-wrapper" direction="Column" class="sapUiSmallMargin" width="auto">
+            <CheckBox id="Ack" text="BP Enrichment" />
+            <Label id="comment-label" text="Comment" />
+            <TextArea id="comment-field" showExceededText="true" maxLength="1000" width="100%" height="120px" value="{context>/comment}"/>
+        </FlexBox>
+        </content>
+    </Page>
+    </App>
+</mvc:View>

@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: bpmanagement
+version: 0.0.1
+modules:
+- name: bpmanagement-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: bpmanagement-destination-service
+    parameters:
+      content-target: true
+  - name: bpmanagement_html_repo_host
+    parameters:
+      service-key:
+        name: bpmanagement_html_repo_host-key
+  - name: uaa_bpmanagement
+    parameters:
+      service-key:
+        name: uaa_bpmanagement-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: bpmanagement_bpmanagement_html_repo_host
+          ServiceInstanceName: bpmanagement-html5-app-host-service
+          ServiceKeyName: bpmanagement_html_repo_host-key
+          sap.cloud.service: bpmanagement
+        - Authentication: OAuth2UserTokenExchange
+          Name: bpmanagement_uaa_bpmanagement
+          ServiceInstanceName: bpmanagement-xsuaa-service
+          ServiceKeyName: uaa_bpmanagement-key
+          sap.cloud.service: bpmanagement
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: bpmanagement-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: bpmanagement_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - bpmngmntnspworkflowuimodule.zip
+      name: bpmngmntnspworkflowuimodule
+      target-path: resources/
+- name: bpmngmntnspworkflowuimodule
+  type: html5
+  path: workflow-ui-module
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: bpmanagement-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        subaccount:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: bpmanagement-destination-service
+    service-plan: lite
+- name: bpmanagement_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: bpmanagement-html5-app-host-service
+    service-plan: app-host
+- name: uaa_bpmanagement
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: bpmanagement-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo
